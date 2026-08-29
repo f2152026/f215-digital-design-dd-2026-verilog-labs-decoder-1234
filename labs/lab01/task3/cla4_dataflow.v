@@ -20,10 +20,7 @@ module cla4_dataflow(
   assign #(2) c1   = g[0] | (p[0] & cin);
   assign #(2) c2   = g[1] | (p[1] & g[0]) | (p[1] & p[0] & cin);
   assign #(2) c3   = g[2] | (p[2] & g[1]) | (p[2] & p[1] & g[0]) | (p[2] & p[1] & p[0] & cin);
-  assign #(2) cout = g[3] | (p[3] & g[2]) | (p[3] & p[2] & g[1]) | (p[3] & p[2] & p[1] & g[0]) | (p[3] & p[3] ? 1'b0 : (p[3] & p[2] & p[1] & p[0] & cin));
-
-  // Simplified cout definition according to standard pattern
-  // assign #(2) cout = g[3] | (p[3] & g[2]) | (p[3] & p[2] & g[1]) | (p[3] & p[2] & p[1] & g[0]) | (p[3] & p[2] & p[1] & p[0] & cin);
+  assign #(2) cout = g[3] | (p[3] & g[2]) | (p[3] & p[2] & g[1]) | (p[3] & p[2] & p[1] & g[0]) | (p[3] & p[2] & p[1] & p[0] & cin);
 
   // Sum logic with delay
   assign #(2) sum  = p ^ {c3, c2, c1, cin};
